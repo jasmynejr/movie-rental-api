@@ -23,4 +23,12 @@ public class StaffController {
     public List<Staff> allStaff(){
         return staffRepo.findAll();
     }
+
+    @GetMapping("/staff/{id}")
+    public ResponseEntity<Staff> getStaffById(@PathVariable(value = "id")Long id){
+        Optional<Staff> staffEnt = staffRepo.findById(id);
+        Staff staff = staffEnt.get();
+        return ResponseEntity.ok().body(staff);
+
+    }
 }
