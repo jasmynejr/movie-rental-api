@@ -1,9 +1,7 @@
 package com.movierental.movierentalapi.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 
 @Entity
 @Table(name="staff")
@@ -15,6 +13,9 @@ public class Staff {
     private String username;
     private String password;
     
+    @OneToOne(mappedBy = "manager_staff_id")
+   private Store store;
+
     public Staff() {
     }
 
@@ -80,6 +81,9 @@ public class Staff {
     public void setPassword(String password) {
         this.password = password;
     }
+
+   
+    
 
     
 }

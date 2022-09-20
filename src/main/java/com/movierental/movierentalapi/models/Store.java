@@ -1,16 +1,19 @@
 package com.movierental.movierentalapi.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 
 @Entity
 @Table(name="store")
 public class Store {
     private long id;
-    private long manager_id;
+    private long manager_id;    
     private long address_id;
+
+    @OneToOne
+    @JoinColumn(name="staff_id")
+    private Staff manager;
+    
 
     public Store(){}
 
@@ -48,6 +51,7 @@ public class Store {
     public void setStoreAddressId(long id){
         this.address_id = id;
     }
+
 
     @Override
     public String toString(){

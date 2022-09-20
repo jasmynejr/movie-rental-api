@@ -4,7 +4,10 @@
 			"path": "."
 		},
 		{
-			"path": "../movie-rental-front"
+			"path": "../movie-rental-app"
 		}
-	]
+	],
+	"settings": {
+		"java.configuration.updateBuildConfiguration": "interactive"
+	}
 }
