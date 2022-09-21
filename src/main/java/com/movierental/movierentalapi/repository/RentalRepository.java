@@ -2,9 +2,10 @@ package com.movierental.movierentalapi.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import com.movierental.movierentalapi.models.Customer;
+import com.movierental.movierentalapi.models.Rental;
 import java.util.*;
+
 @Repository
-public interface CustomerRepository extends JpaRepository<Customer,Long>{
-    List<Customer> findByStoreId(long storeId);
+public interface RentalRepository extends JpaRepository<Rental,Long> {
+    List<Rental> findByCustomerId(long customerId);
 }

@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.movierental.movierentalapi.models.Customer;
-import com.movierental.movierentalapi.repository.CustomerRepository;
+
+import com.movierental.movierentalapi.models.*;
+import com.movierental.movierentalapi.repository.*;
+
 
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -21,6 +23,10 @@ import com.movierental.movierentalapi.repository.CustomerRepository;
 public class CustomersController {
     @Autowired
     private CustomerRepository customerRepo;
+
+    @Autowired
+    private RentalRepository rentalRepo;
+
 
     @GetMapping("/customers")
     public List<Customer> getAllCustomers(){
@@ -32,5 +38,10 @@ public class CustomersController {
         Optional<Customer> customerEnt = customerRepo.findById(id);
         Customer customer = customerEnt.get();
         return ResponseEntity.ok().body(customer);
+    }
+
+    @GetMapping("/customers/{id}/rentals")
+    public List<Rental> getAllRentals(@PathVariable(value="id") Long customerId){
+        return rentalRepo.findByCustomerId(customerId);
     }
 }

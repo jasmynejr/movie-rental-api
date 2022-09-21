@@ -5,10 +5,10 @@ import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.movierental.movierentalapi.repository.StoreRepository;
-import com.movierental.movierentalapi.repository.InventoryRepository;
-import com.movierental.movierentalapi.models.Store;
-import com.movierental.movierentalapi.models.Inventory;
+
+import com.movierental.movierentalapi.repository.*;
+import com.movierental.movierentalapi.models.*;
+
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api")
@@ -17,7 +17,8 @@ public class StoresController {
     private StoreRepository storeRepo;
     @Autowired
     private InventoryRepository inventoryRepo;
-
+    @Autowired
+    private CustomerRepository customerRepo;
     @GetMapping("/stores")
     public List<Store> allStores(){
         return storeRepo.findAll();
@@ -40,4 +41,8 @@ public class StoresController {
         return inventoryRepo.findByStoreId(storeId);
     }
 
+    @GetMapping("/stores/{id}/customers")
+    public List<Customer> findStoreCustomers(@PathVariable(value="id") long storeId){
+        return customerRepo.findByStoreId(storeId);
+    }
 }
