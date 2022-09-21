@@ -10,10 +10,8 @@ public class Store {
     private long manager_id;    
     private long address_id;
 
-    @OneToOne
-    @JoinColumn(name="staff_id")
     private Staff manager;
-    
+    private Address address;
 
     public Store(){}
 
@@ -52,6 +50,26 @@ public class Store {
         this.address_id = id;
     }
 
+    @OneToOne
+    @JoinColumn(name="manager_staff_id",referencedColumnName = "staff_id",insertable = false,updatable = false)
+    public Staff getManager(){
+        return manager;
+    }
+
+    
+    public void setManager(Staff manager){
+            this.manager = manager;
+    }
+
+    @OneToOne
+    @JoinColumn(name="address_id",insertable = false,updatable = false)
+    public Address getAddress(){
+        return address;
+    }
+
+    public void setAddress(Address a){
+        this.address = a;
+    }
 
     @Override
     public String toString(){

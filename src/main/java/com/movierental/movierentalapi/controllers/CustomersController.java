@@ -27,6 +27,7 @@ public class CustomersController {
         return customerRepo.findAll();
     }
 
+    @GetMapping("/customers/{id}")
     public ResponseEntity<Customer> findCustomerById(@PathVariable(value="id")Long id){
         Optional<Customer> customerEnt = customerRepo.findById(id);
         Customer customer = customerEnt.get();

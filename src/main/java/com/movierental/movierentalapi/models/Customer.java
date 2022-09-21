@@ -10,18 +10,17 @@ public class Customer {
     private String first_name;
     private String last_name;
     private String email;
-    private long address_id;
     private boolean active;
 
+    private Address address;
     
     public Customer() {
     }
-    public Customer(long store_id, String first_name, String last_name, String email, long address_id, boolean active) {
+    public Customer(long store_id, String first_name, String last_name, String email, boolean active) {
         this.store_id = store_id;
         this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;
-        this.address_id = address_id;
         this.active = active;
     }
     @Id
@@ -63,13 +62,7 @@ public class Customer {
         this.email = email;
     }
 
-    @Column(name="address_id")
-    public long getAddress_id() {
-        return address_id;
-    }
-    public void setAddress_id(long address_id) {
-        this.address_id = address_id;
-    }
+    
 
     @Column(name="activebool")
     public boolean isActive() {
@@ -78,6 +71,14 @@ public class Customer {
     public void setActive(boolean active) {
         this.active = active;
     }
+    @OneToOne
+    @JoinColumn(name="address_id",insertable = false,updatable = false)
+    public Address getAddress(){
+        return address;
+    }
 
+    public void setAddress(Address a){
+        this.address  = a;
+    }
     
 }

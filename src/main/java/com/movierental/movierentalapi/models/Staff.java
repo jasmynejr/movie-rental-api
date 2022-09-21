@@ -13,8 +13,8 @@ public class Staff {
     private String username;
     private String password;
     
-    @OneToOne(mappedBy = "manager_staff_id")
-   private Store store;
+   
+   //private Store store;
 
     public Staff() {
     }
@@ -81,8 +81,8 @@ public class Staff {
     public void setPassword(String password) {
         this.password = password;
     }
-
-   
+    
+    
     
 
     
