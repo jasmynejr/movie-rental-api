@@ -19,6 +19,8 @@ public class StoresController {
     private InventoryRepository inventoryRepo;
     @Autowired
     private CustomerRepository customerRepo;
+    @Autowired
+    private RentalRepository rentalRepo;
     @GetMapping("/stores")
     public List<Store> allStores(){
         return storeRepo.findAll();
@@ -44,5 +46,13 @@ public class StoresController {
     @GetMapping("/stores/{id}/customers")
     public List<Customer> findStoreCustomers(@PathVariable(value="id") long storeId){
         return customerRepo.findByStoreId(storeId);
+    }
+
+    @GetMapping("/stores/{id}/rentals")
+    public List<Rental> findStoreRentals(@PathVariable(value="id") long storeId){
+        Optional<Store> storeEnt = storeRepo.findById(storeId);
+        Store store = storeEnt.get();
+
+        return rentalRepo.findByStaffId(store.getStoreManagerId());
     }
 }

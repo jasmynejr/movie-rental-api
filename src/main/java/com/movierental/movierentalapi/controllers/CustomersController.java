@@ -27,6 +27,8 @@ public class CustomersController {
     @Autowired
     private RentalRepository rentalRepo;
 
+    @Autowired
+    private PaymentRepository paymentRepo;
 
     @GetMapping("/customers")
     public List<Customer> getAllCustomers(){
@@ -44,4 +46,10 @@ public class CustomersController {
     public List<Rental> getAllRentals(@PathVariable(value="id") Long customerId){
         return rentalRepo.findByCustomerId(customerId);
     }
+
+    @GetMapping("/customers/{id}/payments")
+    public List<Payment> getAllPayments(@PathVariable(value="id") Long customerId){
+        return paymentRepo.findByCustomerId(customerId);
+    }
+
 }
