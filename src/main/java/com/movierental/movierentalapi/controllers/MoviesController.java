@@ -37,4 +37,10 @@ public class MoviesController {
       movieRepo.save(newMovie);
       return ResponseEntity.ok().body(newMovie);
     }
+
+    @GetMapping("/movies/search")
+    public List<Movie> searchMovies(@RequestParam(required=false) String keyword ){
+      System.out.println(keyword);
+      return movieRepo.findByTitleLikeIgnoreCase("%"+keyword+"%");
+    }
 }
